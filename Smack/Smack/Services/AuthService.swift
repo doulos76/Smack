@@ -16,7 +16,7 @@ class AuthService {
   
   var isLoggedIn: Bool {
     get {
-      return defaults.bool(forKey: LOGGED_IN_Key)
+      return defaults.bool(forKey: LOGGED_IN_KEY)
     }
     set {
       defaults.set(newValue, forKey: LOGGED_IN_KEY)
@@ -43,6 +43,7 @@ class AuthService {
   
   func registerUser(email: String, password: String, completion: @escaping CompletionHandler) {
     let lowerCaseEmail = email.lowercased()
+    
     let header = [
       "Content-type": "application/json; charset=utf-8"
     ]
@@ -56,7 +57,7 @@ class AuthService {
         completion(true)
       } else {
         completion(false)
-        debugPrint(response, result.error as Any)
+        debugPrint(response.result.error as Any)
       }
     }
   }
